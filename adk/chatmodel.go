@@ -613,8 +613,11 @@ func (a *ChatModelAgent) applyBeforeAgent(ctx context.Context, ec *execContext) 
 	runtimeEC := &execContext{
 		instruction: runCtx.Instruction,
 		toolsNodeConf: compose.ToolsNodeConfig{
-			Tools:               runCtx.Tools,
-			ToolCallMiddlewares: cloneSlice(ec.toolsNodeConf.ToolCallMiddlewares),
+			Tools:                runCtx.Tools,
+			ToolCallMiddlewares:  cloneSlice(ec.toolsNodeConf.ToolCallMiddlewares),
+			UnknownToolsHandler:  ec.toolsNodeConf.UnknownToolsHandler,
+			ExecuteSequentially:  ec.toolsNodeConf.ExecuteSequentially,
+			ToolArgumentsHandler: ec.toolsNodeConf.ToolArgumentsHandler,
 		},
 		returnDirectly: runCtx.ReturnDirectly,
 		toolUpdated:    true,
